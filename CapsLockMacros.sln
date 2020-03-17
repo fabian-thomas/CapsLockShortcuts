@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.329
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisableCapsLock", "DisableCapsLock\DisableCapsLock.csproj", "{341C6D37-88E9-47E6-9015-14D560E5D748}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapsLockMacros", "CapsLockMacros\CapsLockMacros.csproj", "{341C6D37-88E9-47E6-9015-14D560E5D748}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
