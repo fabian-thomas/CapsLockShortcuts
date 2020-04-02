@@ -1,34 +1,34 @@
 [
   {
-    "InputKey": "A",
-    "OutputKey": "Left"
-  },
-  {
     "InputKey": "W",
     "OutputKey": "Up"
   },
   {
-    "InputKey": "D",
-    "OutputKey": "Right"
+    "InputKey": "A",
+    "OutputKey": "Left"
   },
   {
     "InputKey": "S",
     "OutputKey": "Down"
   },
   {
-    "InputKey": "U",
-    "OutputKey": "Backspace"
+    "InputKey": "D",
+    "OutputKey": "Right"
   },
   {
-    "InputKey": "H",
+    "InputKey": "R",
     "OutputKey": "Pos1"
   },
   {
-    "InputKey": "Ö",
+    "InputKey": "F",
     "OutputKey": "End"
   },
   {
-    "InputKey": "O",
+    "InputKey": "Q",
+    "OutputKey": "Backspace"
+  },
+  {
+    "InputKey": "E",
     "OutputKey": "Delete"
   }
 ]

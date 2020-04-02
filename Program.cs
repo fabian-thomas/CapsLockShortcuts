@@ -13,7 +13,7 @@ namespace CapsLockMacros
 {
     class Program
     {
-        #region block CAPSLOCK
+        #region block Capslock
         private const int KEYEVENTF_KEYUP = 0x2;
         private const int KEYEVENTF_KEYDOWN = 0x0;
         private const int WM_KEYUP = 0x101;
@@ -165,8 +165,6 @@ namespace CapsLockMacros
 
         static void Main(string[] args)
         {
-            ShowConfigFolder_Click(null, null);
-
             if (!File.Exists(CONFIG_PATH))
                 WriteDefaultConfig();
 
@@ -184,7 +182,7 @@ namespace CapsLockMacros
 
             NI = new NotifyIcon
             {
-                Icon = AppIconEnabled,
+                Icon = AppIcon,
                 Text = "CapsLockMacros"
             };
 
@@ -205,26 +203,24 @@ namespace CapsLockMacros
         }
 
         #region NotifyIcon
-
         private static NotifyIcon NI;
         private const string DeactivateTitle = "Deactivate";
         private const string ActivateTitle = "Activate";
         private const string ExitTitle = "Exit";
         private const string ShowConfigTitle = "Show config file";
-        private static readonly Icon AppIconEnabled = Icon.ExtractAssociatedIcon("./Resources/AppIconEnabled.ico");
-        private static readonly Icon AppIconDisabled = Icon.ExtractAssociatedIcon("./Resources/AppIconDisabled.ico");
+        private static readonly Icon AppIcon = Icon.ExtractAssociatedIcon("./Resources/AppIcon.ico");
 
         private static void Deactivate_Click(object sender, EventArgs e)
         {
             SetMenu_Deactivated();
-            NI.Icon = AppIconDisabled;
+            NI.Icon = AppIcon;
             UnhookWindowsHookEx(_hookID);
         }
 
         private static void Activate_Click(object sender, EventArgs e)
         {
             SetMenu_Activated();
-            NI.Icon = AppIconEnabled;
+            NI.Icon = AppIcon;
             _hookID = SetHook(_proc);
         }
 
@@ -236,6 +232,17 @@ namespace CapsLockMacros
         private static void ShowConfigFolder_Click(object sender, EventArgs e)
         {
             Process.Start("explorer.exe", string.Format("/select,\"{0}\"", CONFIG_PATH));
+        }
+
+        private static void SetMenu_Activated()
+        {
+            NI.ContextMenuStrip.Items.Clear();
+            var item = NI.ContextMenuStrip.Items.Add(DeactivateTitle);
+            item.Click += new EventHandler(Deactivate_Click);
+            item = NI.ContextMenuStrip.Items.Add(ExitTitle);
+            item.Click += new EventHandler(Exit_Click);
+            item = NI.ContextMenuStrip.Items.Add(ShowConfigTitle);
+            item.Click += new EventHandler(ShowConfigFolder_Click);
         }
 
         private static void SetMenu_Deactivated()
@@ -250,18 +257,6 @@ namespace CapsLockMacros
             item = NI.ContextMenuStrip.Items.Add(ShowConfigTitle);
             item.Click += new EventHandler(ShowConfigFolder_Click);
         }
-
-        private static void SetMenu_Activated()
-        {
-            NI.ContextMenuStrip.Items.Clear();
-            var item = NI.ContextMenuStrip.Items.Add(DeactivateTitle);
-            item.Click += new EventHandler(Deactivate_Click);
-            item = NI.ContextMenuStrip.Items.Add(ExitTitle);
-            item.Click += new EventHandler(Exit_Click);
-            item = NI.ContextMenuStrip.Items.Add(ShowConfigTitle);
-            item.Click += new EventHandler(ShowConfigFolder_Click);
-        }
-
         #endregion
     }
 }

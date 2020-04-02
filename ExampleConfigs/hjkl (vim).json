@@ -1,0 +1,18 @@
+[
+  {
+    "InputKey": "J",
+    "OutputKey": "Up"
+  },
+  {
+    "InputKey": "H",
+    "OutputKey": "Left"
+  },
+  {
+    "InputKey": "J",
+    "OutputKey": "Down"
+  },
+  {
+    "InputKey": "L",
+    "OutputKey": "Right"
+  }
+]

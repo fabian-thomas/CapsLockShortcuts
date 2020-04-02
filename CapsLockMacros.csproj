@@ -12,10 +12,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Resources\AppIconDisabled.ico">
+    <Content Include="Resources\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\AppIconEnabled.ico">
+    <Content Include="ExampleConfigs\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
