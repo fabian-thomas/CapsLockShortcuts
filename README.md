@@ -34,7 +34,7 @@ When you run the executable file for the first time, the default config file (st
 
 ## Default Configuration
 
-![capslock](single-keys-blank\capslock.svg)+![I](single-keys-blank\i.svg)	executes	![Up](single-keys-blank\cursor-up.svg)
+![capslock](single-keys-blank\capslock.svg)+![I](single-keys-blank\i.svg)	executes	![Up](single-keys-blank/cursor-up.svg)
 
 ![capslock](single-keys-blank\capslock.svg)+![J](single-keys-blank\J.svg)	executes	![Left](single-keys-blank\cursor-left.svg)
 
