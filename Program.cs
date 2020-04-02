@@ -99,7 +99,7 @@ namespace CapsLockMacros
                     key = Keys.Back;
                 else if (keyLabel == "Pos1")
                     key = Keys.Home;
-                else if (keyLabel == "Del")
+                else if (keyLabel == "Del" || keyLabel == "Entf")
                     key = Keys.Delete;
                 else return false;
             }
@@ -162,7 +162,6 @@ namespace CapsLockMacros
                 }));
         }
         #endregion
-
         static void Main(string[] args)
         {
             if (!File.Exists(CONFIG_PATH))
