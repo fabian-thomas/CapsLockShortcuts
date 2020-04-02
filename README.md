@@ -61,6 +61,10 @@ When you run the executable file for the first time, the default config file (st
 	<img src="single-keys-blank/cursor-up.svg"/>
 </div>
 
+<div style="display: flex;align-items: center;"><img src="single-keys-blank/capslock.svg"/><p style="vertical-align: middle;">executes</p><img src="single-keys-blank/i.svg"/><p style="vertical-align: middle;">executes</p><img src="single-keys-blank/cursor-up.svg"/></div>
+
+<div style="display: flex;align-items: center;flex-direction: row;"><img src="single-keys-blank/capslock.svg"/><p style="vertical-align: middle;">executes</p><img src="single-keys-blank/i.svg"/><p style="vertical-align: middle;">executes</p><img src="single-keys-blank/cursor-up.svg"/></div>
+
 (Icons by [q2apro](https://github.com/q2apro): [repo](https://github.com/q2apro/keyboard-keys-speedflips))
 
 ## Possible Problems
