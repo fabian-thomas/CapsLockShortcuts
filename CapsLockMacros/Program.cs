@@ -8,8 +8,7 @@ namespace CapsLockMacros
 {
     class Program
     {
-
-        #region CAPSLOCK blockieren
+        #region block CAPSLOCK
 
         // https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
         private const byte VK_CAPSLOCK = 0x14;
@@ -22,13 +21,12 @@ namespace CapsLockMacros
         private const byte VK_HOME = 0x24;
         private const byte VK_END = 0x23;
 
-        private const uint KEYEVENTF_EXTENDEDKEY = 1;
         private const int KEYEVENTF_KEYUP = 0x2;
         private const int KEYEVENTF_KEYDOWN = 0x0;
-
         private const int WM_KEYUP = 0x101;
         private const int WM_KEYDOWN = 0x0100;
 
+        private const uint KEYEVENTF_EXTENDEDKEY = 1;
         private const int WH_KEYBOARD_LL = 13;
 
         private static LowLevelKeyboardProc _proc = HookCallback;
@@ -138,7 +136,6 @@ namespace CapsLockMacros
 
         #endregion
 
-
         private static Timer Timer = new Timer
         {
             Interval = 1,
@@ -159,13 +156,15 @@ namespace CapsLockMacros
             NI = new NotifyIcon
             {
                 Icon = AppIconEnabled,
-                Text = "DisableCapsLock"
+                Text = "CapsLockMacros"
             };
 
-            var cm = new ContextMenu();
-            NI.ContextMenu = cm;
-            cm.MenuItems.Add(DeactivateMI);
-            cm.MenuItems.Add(ExitMI);
+            var cm = new ContextMenuStrip();
+            NI.ContextMenuStrip = cm;
+            var item = NI.ContextMenuStrip.Items.Add(DeactivateTitle);
+            item.Click += new EventHandler(NI_ContextMenu_Deactivate_Click);
+            item = NI.ContextMenuStrip.Items.Add(ExitTitle);
+            item.Click += new EventHandler(NI_ContextMenu_Exit_Click);
 
             NI.Visible = true;
 
@@ -182,26 +181,30 @@ namespace CapsLockMacros
         #region NotifyIcon
 
         private static NotifyIcon NI;
-        private static readonly MenuItem DeactivateMI = new MenuItem("Deaktivieren", new EventHandler(NI_ContextMenu_Deactivate_Click));
-        private static readonly MenuItem ActivateMI = new MenuItem("Aktivieren", new EventHandler(NI_ContextMenu_Activate_Click));
-        private static readonly MenuItem ExitMI = new MenuItem("Beenden", new EventHandler(NI_ContextMenu_Exit_Click));
+        private const string DeactivateTitle = "Deactivate";
+        private const string ActivateTitle = "Activate";
+        private const string ExitTitle = "Exit";
         private static readonly Icon AppIconEnabled = Icon.ExtractAssociatedIcon("./Resources/AppIconEnabled.ico");
         private static readonly Icon AppIconDisabled = Icon.ExtractAssociatedIcon("./Resources/AppIconDisabled.ico");
 
         private static void NI_ContextMenu_Deactivate_Click(object sender, EventArgs e)
         {
-            NI.ContextMenu.MenuItems.Clear();
-            NI.ContextMenu.MenuItems.Add(ActivateMI);
-            NI.ContextMenu.MenuItems.Add(ExitMI);
+            NI.ContextMenuStrip.Items.Clear();
+            var item = NI.ContextMenuStrip.Items.Add(ActivateTitle);
+            item.Click += new EventHandler(NI_ContextMenu_Activate_Click);
+            item = NI.ContextMenuStrip.Items.Add(ExitTitle);
+            item.Click += new EventHandler(NI_ContextMenu_Exit_Click);
             NI.Icon = AppIconDisabled;
             UnhookWindowsHookEx(_hookID);
         }
 
         private static void NI_ContextMenu_Activate_Click(object sender, EventArgs e)
         {
-            NI.ContextMenu.MenuItems.Clear();
-            NI.ContextMenu.MenuItems.Add(DeactivateMI);
-            NI.ContextMenu.MenuItems.Add(ExitMI);
+            NI.ContextMenuStrip.Items.Clear();
+            var item = NI.ContextMenuStrip.Items.Add(DeactivateTitle);
+            item.Click += new EventHandler(NI_ContextMenu_Deactivate_Click);
+            item = NI.ContextMenuStrip.Items.Add(ExitTitle);
+            item.Click += new EventHandler(NI_ContextMenu_Exit_Click);
             NI.Icon = AppIconEnabled;
             _hookID = SetHook(_proc);
         }
