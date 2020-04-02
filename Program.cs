@@ -74,7 +74,6 @@ namespace CapsLockMacros
                                 Keys keyToPress;
                                 if (TryParseKey(macro.OutputKey, out keyToPress))
                                 {
-                                    var U = (byte)keyToPress;
                                     SimulateKeyPress(wParam, (byte)keyToPress);
                                     return new IntPtr(1);
                                 }
@@ -90,11 +89,11 @@ namespace CapsLockMacros
         {
             if (!Enum.TryParse(keyLabel, out key))
             {
-                if (keyLabel == "Ö" || keyLabel == "ö")
+                if (keyLabel == "Ö")
                     key = Keys.Oemtilde;
-                else if (keyLabel == "Ä" || keyLabel == "ä")
+                else if (keyLabel == "Ä")
                     key = Keys.Oem7;
-                else if (keyLabel == "Ü" || keyLabel == "ü")
+                else if (keyLabel == "Ü")
                     key = Keys.Oem1;
                 else if (keyLabel == "Backspace")
                     key = Keys.Back;
@@ -147,9 +146,9 @@ namespace CapsLockMacros
                 new Macro() { InputKey = "L", OutputKey = "Right" },
                 new Macro() { InputKey = "K", OutputKey = "Down" },
                 new Macro() { InputKey = "U", OutputKey = "Backspace" },
-                new Macro() { InputKey="H", OutputKey="Pos1" },
-                new Macro() { InputKey="Ö", OutputKey="End" },
-                new Macro() { InputKey="O", OutputKey="Delete" }};
+                new Macro() { InputKey = "O", OutputKey="Delete" },
+                new Macro() { InputKey = "H", OutputKey="Pos1" },
+                new Macro() { InputKey = "Ö", OutputKey="End" } };
         private static List<Macro> Config;
 
         private static void WriteDefaultConfig()
@@ -166,6 +165,8 @@ namespace CapsLockMacros
 
         static void Main(string[] args)
         {
+            ShowConfigFolder_Click(null, null);
+
             if (!File.Exists(CONFIG_PATH))
                 WriteDefaultConfig();
 
@@ -189,10 +190,7 @@ namespace CapsLockMacros
 
             var cm = new ContextMenuStrip();
             NI.ContextMenuStrip = cm;
-            var item = NI.ContextMenuStrip.Items.Add(DeactivateTitle);
-            item.Click += new EventHandler(NI_ContextMenu_Deactivate_Click);
-            item = NI.ContextMenuStrip.Items.Add(ExitTitle);
-            item.Click += new EventHandler(NI_ContextMenu_Exit_Click);
+            SetMenu_Activated();
 
             NI.Visible = true;
 
@@ -212,34 +210,56 @@ namespace CapsLockMacros
         private const string DeactivateTitle = "Deactivate";
         private const string ActivateTitle = "Activate";
         private const string ExitTitle = "Exit";
+        private const string ShowConfigTitle = "Show config file";
         private static readonly Icon AppIconEnabled = Icon.ExtractAssociatedIcon("./Resources/AppIconEnabled.ico");
         private static readonly Icon AppIconDisabled = Icon.ExtractAssociatedIcon("./Resources/AppIconDisabled.ico");
 
-        private static void NI_ContextMenu_Deactivate_Click(object sender, EventArgs e)
+        private static void Deactivate_Click(object sender, EventArgs e)
         {
-            NI.ContextMenuStrip.Items.Clear();
-            var item = NI.ContextMenuStrip.Items.Add(ActivateTitle);
-            item.Click += new EventHandler(NI_ContextMenu_Activate_Click);
-            item = NI.ContextMenuStrip.Items.Add(ExitTitle);
-            item.Click += new EventHandler(NI_ContextMenu_Exit_Click);
+            SetMenu_Deactivated();
             NI.Icon = AppIconDisabled;
             UnhookWindowsHookEx(_hookID);
         }
 
-        private static void NI_ContextMenu_Activate_Click(object sender, EventArgs e)
+        private static void Activate_Click(object sender, EventArgs e)
         {
-            NI.ContextMenuStrip.Items.Clear();
-            var item = NI.ContextMenuStrip.Items.Add(DeactivateTitle);
-            item.Click += new EventHandler(NI_ContextMenu_Deactivate_Click);
-            item = NI.ContextMenuStrip.Items.Add(ExitTitle);
-            item.Click += new EventHandler(NI_ContextMenu_Exit_Click);
+            SetMenu_Activated();
             NI.Icon = AppIconEnabled;
             _hookID = SetHook(_proc);
         }
 
-        private static void NI_ContextMenu_Exit_Click(object sender, EventArgs e)
+        private static void Exit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private static void ShowConfigFolder_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer.exe", string.Format("/select,\"{0}\"", CONFIG_PATH));
+        }
+
+        private static void SetMenu_Deactivated()
+        {
+            NI.ContextMenuStrip.Items.Clear();
+            var item = NI.ContextMenuStrip.Items.Add(ActivateTitle);
+            item.Click += new EventHandler(Activate_Click);
+            item = NI.ContextMenuStrip.Items.Add(ExitTitle);
+            item.Click += new EventHandler(Exit_Click);
+            item = NI.ContextMenuStrip.Items.Add(ExitTitle);
+            item.Click += new EventHandler(Exit_Click);
+            item = NI.ContextMenuStrip.Items.Add(ShowConfigTitle);
+            item.Click += new EventHandler(ShowConfigFolder_Click);
+        }
+
+        private static void SetMenu_Activated()
+        {
+            NI.ContextMenuStrip.Items.Clear();
+            var item = NI.ContextMenuStrip.Items.Add(DeactivateTitle);
+            item.Click += new EventHandler(Deactivate_Click);
+            item = NI.ContextMenuStrip.Items.Add(ExitTitle);
+            item.Click += new EventHandler(Exit_Click);
+            item = NI.ContextMenuStrip.Items.Add(ShowConfigTitle);
+            item.Click += new EventHandler(ShowConfigFolder_Click);
         }
 
         #endregion

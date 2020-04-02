@@ -1,0 +1,34 @@
+[
+  {
+    "InputKey": "A",
+    "OutputKey": "Left"
+  },
+  {
+    "InputKey": "W",
+    "OutputKey": "Up"
+  },
+  {
+    "InputKey": "D",
+    "OutputKey": "Right"
+  },
+  {
+    "InputKey": "S",
+    "OutputKey": "Down"
+  },
+  {
+    "InputKey": "U",
+    "OutputKey": "Backspace"
+  },
+  {
+    "InputKey": "H",
+    "OutputKey": "Pos1"
+  },
+  {
+    "InputKey": "Ö",
+    "OutputKey": "End"
+  },
+  {
+    "InputKey": "O",
+    "OutputKey": "Delete"
+  }
+]
