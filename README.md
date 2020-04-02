@@ -36,13 +36,13 @@ When you run the executable file for the first time, the default config file (st
 
 ![capslock](single-keys-blank/capslock.svg)+![I](single-keys-blank/i.svg)	executes	![Up](single-keys-blank/cursor-up.svg)
 
-![capslock](single-keys-blank/capslock.svg)+![J](single-keys-blank/J.svg)	executes	![Left](single-keys-blank/cursor-left.svg)
+![capslock](single-keys-blank/capslock.svg)+![J](single-keys-blank/j.svg)	executes	![Left](single-keys-blank/cursor-left.svg)
 
-![capslock](single-keys-blank/capslock.svg)+![K](single-keys-blank/K.svg)	executes	![Down](single-keys-blank/cursor-down.svg)
+![capslock](single-keys-blank/capslock.svg)+![K](single-keys-blank/k.svg)	executes	![Down](single-keys-blank/cursor-down.svg)
 
 ![capslock](single-keys-blank/capslock.svg)+![L](single-keys-blank/l.svg)	executes	![Right](single-keys-blank/cursor-right.svg)
 
-![capslock](single-keys-blank/capslock.svg)+![H](single-keys-blank/h.svg)	executes	![Pos1](single-keys-blank/pos1.svg) or ![Pos1](single-keys-blank/Home.svg)
+![capslock](single-keys-blank/capslock.svg)+![H](single-keys-blank/h.svg)	executes	![Pos1](single-keys-blank/pos1.svg) or ![Home](single-keys-blank/home.svg)
 
 ![capslock](single-keys-blank/capslock.svg)+![Ö](single-keys-blank/ö.svg)	executes	![Ende](single-keys-blank/ende.svg) or ![End](single-keys-blank/end.svg) 
 
