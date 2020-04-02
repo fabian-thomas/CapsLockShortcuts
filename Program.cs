@@ -1,7 +1,12 @@
-﻿using System;
+﻿using CapsLockMacros.Models;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Runtime.InteropServices;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 using System.Windows.Forms;
 
 namespace CapsLockMacros
@@ -9,18 +14,6 @@ namespace CapsLockMacros
     class Program
     {
         #region block CAPSLOCK
-
-        // https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
-        private const byte VK_CAPSLOCK = 0x14;
-        private const byte VK_UP = 0x26;
-        private const byte VK_DOWN = 0x28;
-        private const byte VK_LEFT = 0x25;
-        private const byte VK_RIGHT = 0x27;
-        private const byte VK_BACK = 0x08;
-        private const byte VK_DELETE = 0x2E;
-        private const byte VK_HOME = 0x24;
-        private const byte VK_END = 0x23;
-
         private const int KEYEVENTF_KEYUP = 0x2;
         private const int KEYEVENTF_KEYDOWN = 0x0;
         private const int WM_KEYUP = 0x101;
@@ -71,48 +64,58 @@ namespace CapsLockMacros
                     else CapsLockPressed = true;
                 }
                 else if (CapsLockPressed)
-                {
-                    var filtered_key = false;
-
-                    #region Arrrow Keys
-
-                    if (filtered_key = key == Keys.I)
-                        // bScan = Hardware Scan code; is ignored
-                        SimulateKeyPress(wParam, VK_UP);
-                    else if (filtered_key = key == Keys.K)
-                        SimulateKeyPress(wParam, VK_DOWN);
-                    else if (filtered_key = key == Keys.J)
-                        SimulateKeyPress(wParam, VK_LEFT);
-                    else if (filtered_key = key == Keys.L)
-                        SimulateKeyPress(wParam, VK_RIGHT);
-
-                    #endregion
-
-                    #region Special Keys
-
-                    else if (filtered_key = key == Keys.U)
-                        SimulateKeyPress(wParam, VK_BACK);
-                    else if (filtered_key = key == Keys.O)
-                        SimulateKeyPress(wParam, VK_DELETE);
-                    else if (filtered_key = key == Keys.H)
-                        SimulateKeyPress(wParam, VK_HOME);
-                    else if (filtered_key = key == Keys.Oemtilde)
-                        SimulateKeyPress(wParam, VK_END);
-
-                    #endregion
-
-                    if (filtered_key)
-                        return new IntPtr(1);
-                }
+                    foreach (var macro in Config)
+                    {
+                        Keys macroKey;
+                        if (TryParseKey(macro.InputKey, out macroKey))
+                        {
+                            if (key == macroKey)
+                            {
+                                Keys keyToPress;
+                                if (TryParseKey(macro.OutputKey, out keyToPress))
+                                {
+                                    var U = (byte)keyToPress;
+                                    SimulateKeyPress(wParam, (byte)keyToPress);
+                                    return new IntPtr(1);
+                                }
+                            }
+                        }
+                    }
             }
 
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
 
+        private static bool TryParseKey(string keyLabel, out Keys key)
+        {
+            if (!Enum.TryParse(keyLabel, out key))
+            {
+                if (keyLabel == "Ö" || keyLabel == "ö")
+                    key = Keys.Oemtilde;
+                else if (keyLabel == "Ä" || keyLabel == "ä")
+                    key = Keys.Oem7;
+                else if (keyLabel == "Ü" || keyLabel == "ü")
+                    key = Keys.Oem1;
+                else if (keyLabel == "Backspace")
+                    key = Keys.Back;
+                else if (keyLabel == "Pos1")
+                    key = Keys.Home;
+                else if (keyLabel == "Del")
+                    key = Keys.Delete;
+                else return false;
+            }
+            return true;
+        }
+
+        private static Timer Timer = new Timer
+        {
+            Interval = 1,
+        };
+
         private static void Timer_Tick(object sender, EventArgs e)
         {
-            keybd_event(VK_CAPSLOCK, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYDOWN, 0);
-            keybd_event(VK_CAPSLOCK, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
+            keybd_event((byte)Keys.CapsLock, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYDOWN, 0);
+            keybd_event((byte)Keys.CapsLock, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
 
             Timer.Stop();
         }
@@ -133,20 +136,45 @@ namespace CapsLockMacros
 
         [DllImport("user32.dll", EntryPoint = "keybd_event")]
         private static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, int dwExtraInfo);
-
         #endregion
 
-        private static Timer Timer = new Timer
+        #region config
+        private const string CONFIG_PATH = "config.json";
+
+        private readonly static List<Macro> DefaultConfig = new List<Macro>() {
+                new Macro() { InputKey = "J", OutputKey = "Left" },
+                new Macro() { InputKey = "I", OutputKey = "Up" },
+                new Macro() { InputKey = "L", OutputKey = "Right" },
+                new Macro() { InputKey = "K", OutputKey = "Down" },
+                new Macro() { InputKey = "U", OutputKey = "Backspace" },
+                new Macro() { InputKey="H", OutputKey="Pos1" },
+                new Macro() { InputKey="Ö", OutputKey="End" },
+                new Macro() { InputKey="O", OutputKey="Delete" }};
+        private static List<Macro> Config;
+
+        private static void WriteDefaultConfig()
         {
-            Interval = 1,
-        };
+            File.WriteAllText(CONFIG_PATH, JsonSerializer.Serialize(
+                DefaultConfig,
+                new JsonSerializerOptions()
+                {
+                    Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                    WriteIndented = true
+                }));
+        }
+        #endregion
 
         static void Main(string[] args)
         {
+            if (!File.Exists(CONFIG_PATH))
+                WriteDefaultConfig();
+
+            Config = JsonSerializer.Deserialize<List<Macro>>(File.ReadAllText(CONFIG_PATH));
+
             if (Control.IsKeyLocked(Keys.CapsLock))
             {
-                keybd_event(VK_CAPSLOCK, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYDOWN, 0);
-                keybd_event(VK_CAPSLOCK, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
+                keybd_event((byte)Keys.CapsLock, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYDOWN, 0);
+                keybd_event((byte)Keys.CapsLock, 0x45, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
             }
 
             Timer.Tick += Timer_Tick;
