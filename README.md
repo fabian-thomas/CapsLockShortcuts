@@ -34,7 +34,7 @@ When you run the executable file for the first time, the default config file (st
 
 ## Default Configuration
 
-![Capslock](single-keys-blank/capslock.svg) + ![I](single-keys-blank/i.svg)  executes  ![Up](single-keys-blank/cursor-up.svg)
+![Capslock](single-keys-blank/capslock.svg) + ![I](single-keys-blank/i.svg)    ![Up](single-keys-blank/cursor-up.svg)
 
 ![Capslock](single-keys-blank/capslock.svg)+![J](single-keys-blank/j.svg)	executes	![Left](single-keys-blank/cursor-left.svg)
 
@@ -50,6 +50,8 @@ When you run the executable file for the first time, the default config file (st
 
 ![Capslock](single-keys-blank/capslock.svg)+![P](single-keys-blank/p.svg)	executes	![Entf](single-keys-blank/entf.svg) or ![Delete](single-keys-blank/delete.svg)
 
+
+<p align="center"><img src="single-keys-blank/capslock.svg"/>   +   <img src="single-keys-blank/i.svg"/>   executes   <img src="single-keys-blank/cursor-up.svg"/></p>
 
 (Icons by [q2apro](https://github.com/q2apro): [repo](https://github.com/q2apro/keyboard-keys-speedflips))
 
