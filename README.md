@@ -34,36 +34,70 @@ When you run the executable file for the first time, the default config file (st
 
 ## Default Configuration
 
-![Capslock](single-keys-blank/capslock.svg) + ![I](single-keys-blank/i.svg)    ![Up](single-keys-blank/cursor-up.svg)
-
-![Capslock](single-keys-blank/capslock.svg)+![J](single-keys-blank/j.svg)	executes	![Left](single-keys-blank/cursor-left.svg)
-
-![Capslock](single-keys-blank/capslock.svg)+![K](single-keys-blank/k.svg)	executes	![Down](single-keys-blank/cursor-down.svg)
-
-![Capslock](single-keys-blank/capslock.svg)+![L](single-keys-blank/l.svg)	executes	![Right](single-keys-blank/cursor-right.svg)
-
-![Capslock](single-keys-blank/capslock.svg)+![H](single-keys-blank/h.svg)	executes	![Pos1](single-keys-blank/pos1.svg) or ![Home](single-keys-blank/home.svg)
-
-![Capslock](single-keys-blank/capslock.svg)+![Ö](single-keys-blank/ö.svg)	executes	![Ende](single-keys-blank/ende.svg) or ![End](single-keys-blank/end.svg) 
-
-![Capslock](single-keys-blank/capslock.svg)+![U](single-keys-blank/u.svg)	executes	![Backspace](single-keys-blank/backspace.svg)
-
-![Capslock](single-keys-blank/capslock.svg)+![P](single-keys-blank/p.svg)	executes	![Entf](single-keys-blank/entf.svg) or ![Delete](single-keys-blank/delete.svg)
-
-
-<p align="center" style="vertical-align: middle;"><img src="single-keys-blank/capslock.svg"/>   +   <img src="single-keys-blank/i.svg"/>   executes   <img src="single-keys-blank/cursor-up.svg"/></p>
-
-<div style="display: flex;align-items: center;">
-	<img src="single-keys-blank/capslock.svg"/>
-	<p style="vertical-align: middle;">executes</p>
-	<img src="single-keys-blank/i.svg"/>
-	<p style="vertical-align: middle;">executes</p>
-	<img src="single-keys-blank/cursor-up.svg"/>
-</div>
-
-<div style="display: flex;align-items: center;"><img src="single-keys-blank/capslock.svg"/><p style="vertical-align: middle;">executes</p><img src="single-keys-blank/i.svg"/><p style="vertical-align: middle;">executes</p><img src="single-keys-blank/cursor-up.svg"/></div>
-
-<div style="display: flex;align-items: center;flex-direction: row;"><img src="single-keys-blank/capslock.svg"/><p style="vertical-align: middle;">executes</p><img src="single-keys-blank/i.svg"/><p style="vertical-align: middle;">executes</p><img src="single-keys-blank/cursor-up.svg"/></div>
+<table>
+  <tr align="left">
+     <td><img src="single-keys-blank/capslock.svg"></th>
+     <td>+</th>
+     <td><img src="single-keys-blank/i.svg"></th>
+	 <td>executes</th>
+     <td><img src="single-keys-blank/cursor-up.svg"></th>
+  </tr>
+  <tr align="left">
+     <td><img src="single-keys-blank/capslock.svg"></th>
+     <td>+</th>
+     <td><img src="single-keys-blank/j.svg"></th>
+	 <td>executes</th>
+     <td><img src="single-keys-blank/cursor-left.svg"></th>
+  </tr>
+  <tr align="left">
+     <td><img src="single-keys-blank/capslock.svg"></th>
+     <td>+</th>
+     <td><img src="single-keys-blank/k.svg"></th>
+	 <td>executes</th>
+     <td><img src="single-keys-blank/cursor-down.svg"></th>
+  </tr>
+   <tr align="left">
+     <td><img src="single-keys-blank/capslock.svg"></th>
+     <td>+</th>
+     <td><img src="single-keys-blank/l.svg"></th>
+	 <td>executes</th>
+     <td><img src="single-keys-blank/cursor-right.svg"></th>
+  </tr>
+   <tr align="left">
+     <td><img src="single-keys-blank/capslock.svg"></th>
+     <td>+</th>
+     <td><img src="single-keys-blank/h.svg"></th>
+	 <td>executes</th>
+     <td><img src="single-keys-blank/pos1.svg"></th>
+	 <td>or</th>
+	 <td><img src="single-keys-blank/home.svg"></th>
+  </tr>
+  <tr align="left">
+     <td><img src="single-keys-blank/capslock.svg"></th>
+     <td>+</th>
+     <td><img src="single-keys-blank/ö.svg"></th>
+	 <td>executes</th>
+     <td><img src="single-keys-blank/ende.svg"></th>
+	 <td>or</th>
+	 <td><img src="single-keys-blank/end.svg"></th>
+  </tr>
+  <tr align="left">
+     <td><img src="single-keys-blank/capslock.svg"></th>
+     <td>+</th>
+     <td><img src="single-keys-blank/u.svg"></th>
+	 <td>executes</th>
+     <td><img src="single-keys-blank/backspace.svg"></th>
+  </tr>
+  <tr align="left">
+     <td><img src="single-keys-blank/capslock.svg"></th>
+     <td>+</th>
+     <td><img src="single-keys-blank/o.svg"></th>
+	 <td>executes</th>
+     <td><img src="single-keys-blank/entf.svg"></th>
+	 <td>or</th>
+	 <td><img src="single-keys-blank/delete.svg"></th>
+  </tr>
+</table>
 
 (Icons by [q2apro](https://github.com/q2apro): [repo](https://github.com/q2apro/keyboard-keys-speedflips))
 
