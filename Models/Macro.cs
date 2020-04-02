@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CapsLockMacros.Models
+﻿namespace CapsLockMacros.Models
 {
     class Macro
     {
