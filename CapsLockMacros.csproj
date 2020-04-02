@@ -8,13 +8,8 @@
     <PublishTrimmed>false</PublishTrimmed>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>false</SelfContained>
-    <PublishDir>publish</PublishDir>
+    <PublishDir>bin/Publish</PublishDir>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Resources\AppIconDisabled.ico" />
-    <None Remove="Resources\AppIconEnabled.ico" />
-  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Resources\AppIconDisabled.ico">

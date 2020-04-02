@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapsLockMacros", "CapsLockMacros\CapsLockMacros.csproj", "{BB109B40-09FE-4281-9FF8-8FB9ABB9612B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapsLockMacros", "CapsLockMacros.csproj", "{551391D4-72B5-45CA-8BD2-CC3385C3A61B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BB109B40-09FE-4281-9FF8-8FB9ABB9612B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB109B40-09FE-4281-9FF8-8FB9ABB9612B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB109B40-09FE-4281-9FF8-8FB9ABB9612B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB109B40-09FE-4281-9FF8-8FB9ABB9612B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{551391D4-72B5-45CA-8BD2-CC3385C3A61B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{551391D4-72B5-45CA-8BD2-CC3385C3A61B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{551391D4-72B5-45CA-8BD2-CC3385C3A61B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{551391D4-72B5-45CA-8BD2-CC3385C3A61B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {363AA74B-91E2-4E96-825A-67D498BE3D75}
+		SolutionGuid = {3D933D34-DA12-41F5-812F-F2EF2F2AB349}
 	EndGlobalSection
 EndGlobal
