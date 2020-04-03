@@ -252,8 +252,6 @@ namespace CapsLockMacros
             item = NI.ContextMenuStrip.Items.Add(ExitTitle);
             item.Click += new EventHandler(Exit_Click);
             item = NI.ContextMenuStrip.Items.Add(ExitTitle);
-            item.Click += new EventHandler(Exit_Click);
-            item = NI.ContextMenuStrip.Items.Add(ShowConfigTitle);
             item.Click += new EventHandler(ShowConfigFolder_Click);
         }
         #endregion
