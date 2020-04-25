@@ -1,5 +1,5 @@
 # Caps Lock Macros
-Application to disable the CapsLock functionality and instead use the key for shortcuts (comparable to Easy-Shift)
+Application to disable the CapsLock functionality and instead use the key for shortcuts (comparable to Easy-Shift/G-Shift)
 
 
 
