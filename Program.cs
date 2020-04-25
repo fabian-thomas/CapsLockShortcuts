@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -61,7 +62,8 @@ namespace CapsLockMacros
                         if (Control.IsKeyLocked(Keys.CapsLock))
                             Timer.Start();
                     }
-                    else CapsLockPressed = true;
+                    else
+                        CapsLockPressed = true;
                 }
                 else if (CapsLockPressed)
                     foreach (var macro in Config)
@@ -101,7 +103,8 @@ namespace CapsLockMacros
                     key = Keys.Home;
                 else if (keyLabel == "Del" || keyLabel == "Entf")
                     key = Keys.Delete;
-                else return false;
+                else
+                    return false;
             }
             return true;
         }
@@ -164,6 +167,8 @@ namespace CapsLockMacros
         #endregion
         static void Main(string[] args)
         {
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
             if (!File.Exists(CONFIG_PATH))
                 WriteDefaultConfig();
 
@@ -255,5 +260,10 @@ namespace CapsLockMacros
             item.Click += new EventHandler(ShowConfigFolder_Click);
         }
         #endregion
+
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show(e.ExceptionObject.ToString(), $"{Assembly.GetExecutingAssembly().GetName().Name} - Unhandled Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }
