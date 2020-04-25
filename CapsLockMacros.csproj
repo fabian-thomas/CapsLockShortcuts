@@ -10,6 +10,7 @@
     <SelfContained>false</SelfContained>
     <PublishDir>bin/Publish</PublishDir>
     <Version>1.2</Version>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
