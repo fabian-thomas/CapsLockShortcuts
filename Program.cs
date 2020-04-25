@@ -14,6 +14,8 @@ namespace CapsLockMacros
 {
     class Program
     {
+        private static string ExecutionDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
         #region block Capslock
         private const int KEYEVENTF_KEYUP = 0x2;
         private const int KEYEVENTF_KEYDOWN = 0x0;
@@ -141,7 +143,7 @@ namespace CapsLockMacros
         #endregion
 
         #region config
-        private const string CONFIG_PATH = "config.json";
+        private static string CONFIG_PATH = $"{ExecutionDirectory}/config.json";
 
         private readonly static List<Macro> DefaultConfig = new List<Macro>() {
                 new Macro() { InputKey = "J", OutputKey = "Left" },
@@ -212,7 +214,7 @@ namespace CapsLockMacros
         private const string ActivateTitle = "Activate";
         private const string ExitTitle = "Exit";
         private const string ShowConfigTitle = "Show config file";
-        private static readonly Icon AppIcon = Icon.ExtractAssociatedIcon("./Resources/AppIcon.ico");
+        private static readonly Icon AppIcon = Icon.ExtractAssociatedIcon($"{ExecutionDirectory}/Resources/AppIcon.ico");
 
         private static void Deactivate_Click(object sender, EventArgs e)
         {
