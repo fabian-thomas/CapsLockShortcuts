@@ -251,7 +251,7 @@ namespace CapsLockMacros
             item.Click += new EventHandler(ShowConfigFolder_Click);
 
             //Version
-            item = NI.ContextMenuStrip.Items.Add($"Version {Assembly.GetExecutingAssembly().GetName().Version}");
+            item = NI.ContextMenuStrip.Items.Add($"Version {Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion}");
             item.Enabled = false;
 
             //Exit
@@ -272,7 +272,7 @@ namespace CapsLockMacros
             item.Click += new EventHandler(ShowConfigFolder_Click);
 
             //Version
-            item = NI.ContextMenuStrip.Items.Add($"Version {Assembly.GetExecutingAssembly().GetName().Version}");
+            item = NI.ContextMenuStrip.Items.Add($"Version {Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion}");
             item.Enabled = false;
 
             //Exit
