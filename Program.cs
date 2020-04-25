@@ -241,29 +241,43 @@ namespace CapsLockMacros
         private static void SetMenu_Activated()
         {
             NI.ContextMenuStrip.Items.Clear();
+
+            //Deactivate
             var item = NI.ContextMenuStrip.Items.Add(DeactivateTitle);
             item.Click += new EventHandler(Deactivate_Click);
-            item = NI.ContextMenuStrip.Items.Add(ExitTitle);
-            item.Click += new EventHandler(Exit_Click);
+
+            //Show Config file
             item = NI.ContextMenuStrip.Items.Add(ShowConfigTitle);
             item.Click += new EventHandler(ShowConfigFolder_Click);
 
-            item = NI.ContextMenuStrip.Items.Add($"Version {Assembly.GetExecutingAssembly().GetName().Version}"); // show current version
+            //Version
+            item = NI.ContextMenuStrip.Items.Add($"Version {Assembly.GetExecutingAssembly().GetName().Version}");
             item.Enabled = false;
+
+            //Exit
+            item = NI.ContextMenuStrip.Items.Add(ExitTitle);
+            item.Click += new EventHandler(Exit_Click);
         }
 
         private static void SetMenu_Deactivated()
         {
             NI.ContextMenuStrip.Items.Clear();
+
+            // Activate
             var item = NI.ContextMenuStrip.Items.Add(ActivateTitle);
             item.Click += new EventHandler(Activate_Click);
-            item = NI.ContextMenuStrip.Items.Add(ExitTitle);
-            item.Click += new EventHandler(Exit_Click);
+
+            //Show Config file
             item = NI.ContextMenuStrip.Items.Add(ShowConfigTitle);
             item.Click += new EventHandler(ShowConfigFolder_Click);
 
-            item = NI.ContextMenuStrip.Items.Add($"Version {Assembly.GetExecutingAssembly().GetName().Version}"); // show current version
+            //Version
+            item = NI.ContextMenuStrip.Items.Add($"Version {Assembly.GetExecutingAssembly().GetName().Version}");
             item.Enabled = false;
+
+            //Exit
+            item = NI.ContextMenuStrip.Items.Add(ExitTitle);
+            item.Click += new EventHandler(Exit_Click);
         }
         #endregion
 

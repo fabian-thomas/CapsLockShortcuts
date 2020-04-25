@@ -11,6 +11,7 @@
     <PublishDir>bin/Publish</PublishDir>
     <Version>1.2</Version>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Resources\AppIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
