@@ -18,10 +18,15 @@ Download the latest release file and extract the contents to a folder of your ch
 
 ## Autostart
 
-1. Right click the exe, hover "Send to" and click "Create Desktop shortcut"
-2. Then copy the shortcut file that has been created on your Desktop to "C:\Users\your_user_name\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup" (you can simply access this folder by hitting "Win key + R" and then running the command "shell:startup")
+Type 'cmd' into the Search Bar and open the Command Prompt through 'Run as Administrator'. 
 
+Replace '<path to CapsLockMacros.exe>' in the following command and run it:
 
+```
+SCHTASKS /CREATE /TR "<path to CapsLockMacros.exe>" /SC ONLOGON /TN "Run CapsLockMacros" /RL HIGHEST /IT
+```
+
+You can open 'Task Scheduler' through the Search Bar in order to further customize the task. Especially take a look at the tab 'Conditions' if you have a laptop, since by default the task is configured to not run and also stop when on battery.
 
 ## Notify Icon
 
