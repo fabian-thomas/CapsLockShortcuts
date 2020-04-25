@@ -247,6 +247,9 @@ namespace CapsLockMacros
             item.Click += new EventHandler(Exit_Click);
             item = NI.ContextMenuStrip.Items.Add(ShowConfigTitle);
             item.Click += new EventHandler(ShowConfigFolder_Click);
+
+            item = NI.ContextMenuStrip.Items.Add($"Version {Assembly.GetExecutingAssembly().GetName().Version}"); // show current version
+            item.Enabled = false;
         }
 
         private static void SetMenu_Deactivated()
@@ -258,9 +261,13 @@ namespace CapsLockMacros
             item.Click += new EventHandler(Exit_Click);
             item = NI.ContextMenuStrip.Items.Add(ShowConfigTitle);
             item.Click += new EventHandler(ShowConfigFolder_Click);
+
+            item = NI.ContextMenuStrip.Items.Add($"Version {Assembly.GetExecutingAssembly().GetName().Version}"); // show current version
+            item.Enabled = false;
         }
         #endregion
 
+        // Show a message box when unhandled exception occurs
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             MessageBox.Show(e.ExceptionObject.ToString(), $"{Assembly.GetExecutingAssembly().GetName().Name} - Unhandled Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);

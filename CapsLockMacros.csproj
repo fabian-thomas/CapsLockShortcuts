@@ -9,6 +9,7 @@
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>false</SelfContained>
     <PublishDir>bin/Publish</PublishDir>
+    <Version>1.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
