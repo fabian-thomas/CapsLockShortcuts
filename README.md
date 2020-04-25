@@ -1,36 +1,41 @@
 # Caps Lock Macros
-## Motivation / Features
-Using the Caps Lock key as shortcut in computer games under stock Windows is annoying. You never know if it's on or off without looking down at your keyboard or typing some test text.
+Application to disable the CapsLock functionality and instead use the key for shortcuts
 
-This leads to the first functionality of the application: it disables the Caps Lock functionality.
 
-But why not use the Caps Lock key as an macro key then? This is the main functionality of the application.
 
 ## Prerequisites
 
 - Windows 10 64 bit
 - [.NET Core](https://dotnet.microsoft.com/download) x64 runtime
 
+
+
 ## Installation
 
 Download the latest release file and extract the contents to a folder of your choice (we'd suggest "C:\ProgramData\CapsLockMacros"). Basically the installation is done now. You can run the exe and use the application like it is.
 
-## Autostart
 
-We suggest that you set up autostart for the application (so that it always runs in the background):
+
+## Autostart
 
 1. Right click the exe, hover "Send to" and click "Create Desktop shortcut"
 2. Then copy the shortcut file that has been created on your Desktop to "C:\Users\your_user_name\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup" (you can simply access this folder by hitting "Win key + R" and then running the command "shell:startup")
 
+
+
 ## Notify Icon
 
 The application runs without a Window or Console. It's minimized in your tray icons. By right clicking the app icon in your tray icons you can pause the functionality of the application, exit the application or access the config file.
+
+
 
 ## Configuration
 
 When you run the executable file for the first time, the default config file (stored in the installation directory) is created. The syntax of the JSON config file is quite simple. The input key is the key that should trigger the action in combination with the Caps Lock key being pressed. The output key is the key that the application will press when you press "Caps Lock + Input key".
 
 **IMPORTANT:** The letter keys (A, B, C, ...) have to be in upper case in the config file.
+
+
 
 ## Default Configuration
 
@@ -100,6 +105,14 @@ When you run the executable file for the first time, the default config file (st
 </table>
 
 (Icons by [q2apro](https://github.com/q2apro): [repo](https://github.com/q2apro/keyboard-keys-speedflips))
+
+
+
+## Why does this app need privileges?
+
+In order to be able to access the pressed keys from an application running with elevated rights, our app needs them as well. Also, some games claim exclusive control over the keyboard which means that under non-elevated circumstances, the pressed keys wouldn't be forwarded to our app.
+
+
 
 ## Possible Problems
 
