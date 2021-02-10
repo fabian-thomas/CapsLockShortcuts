@@ -36,8 +36,7 @@ namespace CapsLockMacros
         #endregion
 
         #region Properties
-        private readonly HashSet<Keys> downKeys = new HashSet<Keys>();
-        public IReadOnlySet<Keys> DownKeys => downKeys;
+        public readonly HashSet<Keys> DownKeys = new HashSet<Keys>();
         #endregion
 
         #region send key presses
@@ -59,6 +58,7 @@ namespace CapsLockMacros
         #endregion
 
         #region global keyboard hook
+        private LowLevelKeyboardProc HookCallbackProc;
         private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (nCode >= 0)
@@ -70,12 +70,12 @@ namespace CapsLockMacros
 
                 if (wParam == (IntPtr)WM_KEYDOWN || wParam == (IntPtr)260)
                 {
-                    downKeys.Add(key);
+                    DownKeys.Add(key);
                     KeyDown?.Invoke(eventArgs);
                 }
                 else if (wParam == (IntPtr)WM_KEYUP)
                 {
-                    downKeys.Remove(key);
+                    DownKeys.Remove(key);
                     KeyUp?.Invoke(eventArgs);
                 }
 
@@ -95,7 +95,8 @@ namespace CapsLockMacros
             using (Process curProcess = Process.GetCurrentProcess())
             using (ProcessModule curModule = curProcess.MainModule)
             {
-                HookID = SetWindowsHookEx(WH_KEYBOARD_LL, HookCallback, GetModuleHandle(curModule.ModuleName), 0);
+                HookCallbackProc = HookCallback;
+                HookID = SetWindowsHookEx(WH_KEYBOARD_LL, HookCallbackProc, GetModuleHandle(curModule.ModuleName), 0);
             }
         }
 
