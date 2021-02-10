@@ -70,6 +70,7 @@ namespace CapsLockMacros
         private void SaveConfig(ConfigFormat configToWrite)
         {
             var json = JsonSerializer.Serialize(configToWrite, new JsonSerializerOptions { WriteIndented = true });
+            Directory.CreateDirectory(Path.GetDirectoryName(Constants.CONFIG_PATH));
             File.WriteAllText(Constants.CONFIG_PATH, json);
         }
 
@@ -122,7 +123,10 @@ namespace CapsLockMacros
                 new Shortcut { InputKey = Keys.K.ToString(), OutputKey = Keys.Down.ToString() },
 
                 new Shortcut { InputKey = Keys.U.ToString(), OutputKey = Keys.Back.ToString() },
-                new Shortcut { InputKey = Keys.O.ToString(), OutputKey = Keys.Delete.ToString() }
+                new Shortcut { InputKey = Keys.O.ToString(), OutputKey = Keys.Delete.ToString() },
+
+                new Shortcut { InputKey = Keys.H.ToString(), OutputKey = Keys.Home.ToString() },
+                new Shortcut { InputKey = Keys.Oem1.ToString(), OutputKey = Keys.End.ToString() },
             }
         };
     }
