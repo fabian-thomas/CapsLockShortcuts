@@ -45,7 +45,7 @@ The application places an icon in your taskbar, which on right click allows you 
 
 ## Default Configuration
 
-![default config shortcuts](README Resources\default config shortcuts.png)
+<img src="readme/default-config-shortcuts.png" width=100% title="default config shortcuts"/>
 
 ## Configuration
 
