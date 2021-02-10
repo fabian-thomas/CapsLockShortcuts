@@ -1,124 +1,56 @@
-# Caps Lock Macros
-Application to disable the CapsLock functionality and instead use the key for shortcuts (comparable to Easy-Shift/G-Shift)
+# CapsLockShortcuts
+Application to disable the CapsLock toggle and instead use the key for shortcuts. At the moment, shortcuts only map to a single key press. However, you can either map to a key which isn't present on your keyboard  (e.g. F13-F24) or map an existing key to a more ergonomic location (default config). Works with any keyboard layout.
 
+Feel free to make suggestions or report bugs.
 
 
 ## Prerequisites
 
-- Windows 10 64 bit
-- [.NET Core](https://dotnet.microsoft.com/download) x64 runtime
-
+- Windows 10
+- [.NET 5.0](https://dotnet.microsoft.com/download)
 
 
 ## Installation
 
-Download the latest release file and extract the contents to a folder of your choice (we'd suggest "C:\ProgramData\CapsLockMacros"). Basically the installation is done now. You can run the exe and use the application like it is.
+Download the latest release file from [here](https://github.com/Thomi7/CapsLockShortcuts/releases) and extract the contents to a folder of your choice (we'd suggest "C:\ProgramData\CapsLockShortcuts"). You can run the exe and use the application now.
 
+## Notes
+
+By default, keyboard inputs can't be captured, when an application running with elevated rights is in foreground or uses raw keyboard data. To bypass these limitations, you can run CapsLockShortcuts as administrator.
 
 
 ## Autostart
 
-Type 'cmd' into the Search Bar and open the Command Prompt through 'Run as Administrator'. 
+We present two methods here, one for starting CapsLockShortcuts in standard user mode and one for starting with elevated rights.
 
-Replace '<path to CapsLockMacros.exe>' in the following command and run it:
+### Autostart (User)
+
+Just put a shortcut to CapsLockShortcuts.exe into the Autostart-folder. The Autostart-folder can be found by pressing Win + R, entering "shell:startup" in the textbox and finally hitting return.
+
+### Autostart (Administrator)
+
+Type 'cmd' into the Start Menu and open the Command Prompt through 'Run as Administrator'. 
+
+Replace '<path to CapsLockShortcuts.exe>' in the following command and run it:
 
 ```
-SCHTASKS /CREATE /TR "<path to CapsLockMacros.exe>" /SC ONLOGON /TN "Run CapsLockMacros" /RL HIGHEST /IT
+SCHTASKS /CREATE /TR "<path to CapsLockShortcuts.exe>" /SC ONLOGON /TN "CapsLockShortcuts" /RL HIGHEST /IT
 ```
 
-You can open 'Task Scheduler' through the Search Bar in order to further customize the task. Especially take a look at the tab 'Conditions' if you have a laptop, since by default the task is configured to not run and also stop when on battery.
+You can open 'Task Scheduler' through the search function of the start menu in order to further customize the task. Especially take a look at the tab 'Conditions' if you have a laptop, since by default the task is configured to not run and also stop when on battery.
 
-## Notify Icon
+## Tray Icon
 
-The application runs without a Window or Console. It's minimized in your tray icons. By right clicking the app icon in your tray icons you can pause the functionality of the application, exit the application or access the config file.
-
-
-
-## Configuration
-
-When you run the executable file for the first time, the default config file (stored in the installation directory) is created. The syntax of the JSON config file is quite simple. The input key is the key that should trigger the action in combination with the Caps Lock key being pressed. The output key is the key that the application will press when you press "Caps Lock + Input key".
-
-**IMPORTANT:** The letter keys (A, B, C, ...) have to be in upper case in the config file.
-
-
+The application places an icon in your taskbar, which on right click allows you to configure or temporarily disable its functionality.
 
 ## Default Configuration
 
-<table>
-  <tr align="left">
-     <td><img src="single-keys-blank/capslock.svg"></th>
-     <td>+</th>
-     <td><img src="single-keys-blank/i.svg"></th>
-	 <td>executes</th>
-     <td><img src="single-keys-blank/cursor-up.svg"></th>
-  </tr>
-  <tr align="left">
-     <td><img src="single-keys-blank/capslock.svg"></th>
-     <td>+</th>
-     <td><img src="single-keys-blank/j.svg"></th>
-	 <td>executes</th>
-     <td><img src="single-keys-blank/cursor-left.svg"></th>
-  </tr>
-  <tr align="left">
-     <td><img src="single-keys-blank/capslock.svg"></th>
-     <td>+</th>
-     <td><img src="single-keys-blank/k.svg"></th>
-	 <td>executes</th>
-     <td><img src="single-keys-blank/cursor-down.svg"></th>
-  </tr>
-   <tr align="left">
-     <td><img src="single-keys-blank/capslock.svg"></th>
-     <td>+</th>
-     <td><img src="single-keys-blank/l.svg"></th>
-	 <td>executes</th>
-     <td><img src="single-keys-blank/cursor-right.svg"></th>
-  </tr>
-   <tr align="left">
-     <td><img src="single-keys-blank/capslock.svg"></th>
-     <td>+</th>
-     <td><img src="single-keys-blank/h.svg"></th>
-	 <td>executes</th>
-     <td><img src="single-keys-blank/pos1.svg"></th>
-	 <td>or</th>
-	 <td><img src="single-keys-blank/home.svg"></th>
-  </tr>
-  <tr align="left">
-     <td><img src="single-keys-blank/capslock.svg"></th>
-     <td>+</th>
-     <td><img src="single-keys-blank/ö.svg"></th>
-	 <td>executes</th>
-     <td><img src="single-keys-blank/ende.svg"></th>
-	 <td>or</th>
-	 <td><img src="single-keys-blank/end.svg"></th>
-  </tr>
-  <tr align="left">
-     <td><img src="single-keys-blank/capslock.svg"></th>
-     <td>+</th>
-     <td><img src="single-keys-blank/u.svg"></th>
-	 <td>executes</th>
-     <td><img src="single-keys-blank/backspace.svg"></th>
-  </tr>
-  <tr align="left">
-     <td><img src="single-keys-blank/capslock.svg"></th>
-     <td>+</th>
-     <td><img src="single-keys-blank/o.svg"></th>
-	 <td>executes</th>
-     <td><img src="single-keys-blank/entf.svg"></th>
-	 <td>or</th>
-	 <td><img src="single-keys-blank/delete.svg"></th>
-  </tr>
-</table>
+![default config shortcuts](README Resources\default config shortcuts.png)
 
-(Icons by [q2apro](https://github.com/q2apro): [repo](https://github.com/q2apro/keyboard-keys-speedflips))
+## Configuration
 
+You can find the config file by right clicking the tray icon and then hitting 'Config'.
 
+To configure the shortcuts, you use every key's code, which you can find out by hitting 'Keycodes' in the tray icon menu. Alternatively, if you wish to use keys that aren't present on your keyboard, have a look [here](https://docs.microsoft.com/de-de/dotnet/api/system.windows.forms.keys). Under 'BaseKeys', you can opt to use another key combination instead of CapsLock to initiate the hotkeys you will define next. Under 'Shortcuts' you define a key to key mapping, meaning you choose a single 'InputKey', which triggers the shortcut and then a single 'OutputKey', the key which should be pressed.
 
-## Why does this app need privileges?
-
-In order to be able to access the pressed keys from an application running with elevated rights, our app needs them as well. Also, some games claim exclusive control over the keyboard which means that under non-elevated circumstances, the pressed keys wouldn't be forwarded to our app.
-
-
-
-## Possible Problems
-
-The application is designed and tested for keyboards with german layout. There are umlaut keys like Ö, Ä and Ü in the german layout which are used in the default configuration. My advice for non-german users: edit the config file to match your layout. If you have an english layouted keyboard you may change the shortcut for "End" to the ";" key. 
+When opting for different 'BaseKeys' than CapsLock, make sure that Windows doesn't already use the shortcut you are defining since that shortcut won't work then.
