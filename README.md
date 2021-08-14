@@ -12,7 +12,7 @@ Feel free to make suggestions or report bugs.
 
 ## Installation
 
-Download the latest release file from [here](https://github.com/Thomi7/CapsLockShortcuts/releases) and extract the contents to a folder of your choice (we'd suggest "C:\ProgramData\CapsLockShortcuts"). You can run the exe and use the application now.
+Download the latest release file from the releases section and extract the contents to a folder of your choice (we'd suggest "C:\ProgramData\CapsLockShortcuts"). You can run the exe and use the application now.
 
 ## Notes
 
